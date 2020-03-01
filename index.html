@@ -29,7 +29,7 @@
                            <input id="quantity" type="text" class="form-control text-center" value="1">
                            <button id="addMoney" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5>$ <span id="price">1219</span> </h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -48,7 +48,7 @@
                            <button id="addMoney2" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5>$ <span id="price2">59</span> </h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -64,9 +64,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="subtotal">1,278</span> </h5>
                         <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="total"> 1,278</span></h5>
                      </div>
                   </div>
                </div>
@@ -87,22 +87,39 @@
       // const afterMinus=currentMinusQuantity-1;
       // console.log(afterMinus)
       // document.getElementById("quantity").value=afterMinus;
-      updateAfterMinus("minusMoney","quantity");
+      updateAfterMinus("quantity");
+      const minusPrice=document.getElementById("price").innerText;
+      const currentMinusPrice=parseFloat(minusPrice);
+   
+      const afterMinusPrice=currentMinusPrice-1219;
+      console.log(afterMinusPrice);
+      document.getElementById("price").innerText=afterMinusPrice;
+      totalSubtotal("price","price2");
+ 
 
    })
 
    const minusPrice2=document.getElementById("minusMoney2");
    minusPrice2.addEventListener("click",function(){
-      updateAfterMinus("minusMoney2","quantity2");
+      updateAfterMinus("quantity2");
+      const minusPrice2=document.getElementById("price2").innerText;
+      const currentMinusPrice2=parseFloat(minusPrice2);
+   
+      const afterMinusPrice2=currentMinusPrice2-59;
+      console.log(afterMinusPrice2);
+      document.getElementById("price2").innerText=afterMinusPrice2;
+      totalSubtotal("price","price2");
+
    })
 
-   function updateAfterMinus(id,inputMinusQuantity){
+   function updateAfterMinus(inputMinusQuantity){
       const minusQuantity=document.getElementById(inputMinusQuantity).value;
       const currentMinusQuantity=parseFloat(minusQuantity);
       const afterMinus=currentMinusQuantity-1;
       console.log(afterMinus)
       document.getElementById(inputMinusQuantity).value=afterMinus;
    }
+
 
    //for plus sign
    const addPrice=document.getElementById("addMoney");
@@ -113,16 +130,30 @@
       // const afterAdd=currentPlusQuantity+1;
       // console.log(afterAdd)
       // document.getElementById("quantity").value=afterAdd;
-      updateAfterPlus("addMoney","quantity");
+      updateAfterPlus("quantity");
+      const plusPrice=document.getElementById("price").innerText;
+      const currentPlusPrice=parseFloat(plusPrice);
+   
+      const afterAddPrice=currentPlusPrice+1219;
+      console.log(afterAddPrice);
+      document.getElementById("price").innerText=afterAddPrice;
+      totalSubtotal("price","price2");
 
    })
    
    const addPrice2=document.getElementById("addMoney2");
    addPrice2.addEventListener("click",function(){
-      updateAfterPlus("addMoney2","quantity2");
+      updateAfterPlus("quantity2");
+      const plusPrice2=document.getElementById("price2").innerText;
+      const currentPlusPrice2=parseFloat(plusPrice2);
+   
+      const afterAddPrice2=currentPlusPrice2+59;
+      console.log(afterAddPrice2);
+      document.getElementById("price2").innerText=afterAddPrice2;
+      totalSubtotal("price","price2");
    })
 
-   function updateAfterPlus(id,inputQuantity){
+   function updateAfterPlus(inputQuantity){
       const plusQuantity=document.getElementById(inputQuantity).value;
       const currentPlusQuantity=parseFloat(plusQuantity);
    
@@ -130,5 +161,17 @@
       console.log(afterAdd);
       document.getElementById(inputQuantity).value=afterAdd;
    }
+
+   function totalSubtotal(id,id2){
+   const getPrice1=document.getElementById("price").innerText;
+   const currentGetPrice1=parseFloat(getPrice1);
+   const getPrice2=document.getElementById("price2").innerText;
+   const currentGetPrice2=parseFloat(getPrice2);
+
+   document.getElementById("subtotal").innerText=currentGetPrice1+currentGetPrice2;
+   document.getElementById("total").innerText=currentGetPrice1+currentGetPrice2;
+
+   }
+
 </script>
 </html>
